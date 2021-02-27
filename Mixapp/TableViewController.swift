@@ -11,13 +11,12 @@ class TableViewController: UITableViewController,UISearchBarDelegate {
     
     @IBOutlet weak var menuBar: UIBarButtonItem!
     
-    
-    
+    // Here i am creating empty array of type "Items" for getting into himself sorted elements of toDoItems array elements
     var filteredToDoItems = [Items]()
     
     let searchController = UISearchController(searchResultsController: nil)
     
-    
+    //for SideMenu
     func menubar(){
         
         if revealViewController() != nil {
@@ -31,10 +30,6 @@ class TableViewController: UITableViewController,UISearchBarDelegate {
         
     }
     
-    
-//    @IBOutlet weak var searchBar: UISearchBar!
-  
-    
     @IBAction func pushEditAction(_ sender: Any) {
         tableView.setEditing(!tableView.isEditing, animated: true)
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.3){
@@ -45,7 +40,7 @@ class TableViewController: UITableViewController,UISearchBarDelegate {
         
     }
     
-
+    //adding todo's
     @IBAction func pushAddAction(_ sender: Any) {
        let alertController =  UIAlertController(title: "Creat new item", message: nil, preferredStyle: .alert)
         
@@ -88,16 +83,12 @@ class TableViewController: UITableViewController,UISearchBarDelegate {
         navigationItem.searchController = searchController
         // 5
         definesPresentationContext = true
+        
         menubar()
-//        searchBar.delegate = self
         loadData()
         tableView.tableFooterView = UIView()
         tableView.backgroundColor = UIColor.systemOrange
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
+       
     }
     
     var isSearchBarEmpty: Bool {
@@ -111,10 +102,7 @@ class TableViewController: UITableViewController,UISearchBarDelegate {
         return 1
     }
 
-//    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        // #warning Incomplete implementation, return the number of rows
-//        return toDoItems.count
-//    }
+
     
     override func tableView(_ tableView: UITableView,
                    numberOfRowsInSection section: Int) -> Int {
@@ -126,33 +114,7 @@ class TableViewController: UITableViewController,UISearchBarDelegate {
     }
 
     
-//    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
-//
-//        let currentItem = toDoItems[indexPath.row]
-//        cell.textLabel?.text = currentItem.name
-//
-//        if (currentItem.completed) == true {
-//            cell.imageView?.image = #imageLiteral(resourceName: "check")
-//            }
-//        else{
-//            cell.imageView?.image = #imageLiteral(resourceName: "iconfinder_uncheck_4473001")
-//        }
-//
-//
-//        if tableView.isEditing{
-//            cell.textLabel?.alpha = 0.4
-//            cell.imageView?.alpha = 0.4
-//
-//        }else{
-//            cell.textLabel?.alpha = 1
-//            cell.imageView?.alpha = 1
-//        }
-//
-//
-//
-//        return cell
-//    }
+
     
     
    override func tableView(_ tableView: UITableView,
@@ -202,7 +164,7 @@ class TableViewController: UITableViewController,UISearchBarDelegate {
             removeItem(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .fade)
         } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
+           
         }    
     }
     
@@ -252,23 +214,9 @@ class TableViewController: UITableViewController,UISearchBarDelegate {
         return false
     }
 
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
+   
+    
+    // MARK: - Searching
    
 
     
